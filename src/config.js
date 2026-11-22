@@ -38,7 +38,7 @@ export const config = {
   familyWhatsApp: '910000000000',
   familyPhone: '+910000000000',
   heroImg: weddingBg,
-  invocationVideo: `${import.meta.env.BASE_URL}media/ganesha-placeholder.mp4`,
+  invocationVideo: 'https://res.cloudinary.com/dtuetuoik/video/upload/v1795342603/ganesha-placeholder.mp4',
   backgroundMusic: bgMusic, // src/assets/bg-music.mp3 — set to '' to disable; starts on the visitor's first tap
   musicVolume: 0.5, // 0–1
   invocationCropBottom: 0.06, // hides a strip at the bottom of the intro video (fraction of height)

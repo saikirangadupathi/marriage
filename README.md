@@ -50,4 +50,5 @@ Edit `ROUTES` in `src/config.js` to add more.
 ## Media
 
 - Images: `src/assets/`. Replace a file, keeping its name.
-- Videos: `public/media/`. Paths are set in `src/config.js`.
+- Event videos: `public/media/`. Their paths are set in `src/config.js`.
+- The opening Ganesha video is hosted on Cloudinary and configured in `src/config.js`.
