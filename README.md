@@ -1,50 +1,53 @@
-# Forever Us
+# Wedding Invitation
 
-A private, animated engagement celebration site — built with Vue 3 + Three.js + GSAP.
+React + Vite. All content (names, dates, venues, events, links) is in **`src/config.js`**.
 
-## Personalize it (no code needed)
-
-Open `src/config.js` and edit:
-
-- `password` — the gate password (currently `your first message date`, your anniversary date)
-- `yourName` / `herName`
-- `heroTitle` / `heroSubtitle`
-- `timeline` — your story. For each entry, add a photo to `public/photos/` and
-  point `photo:` at it, e.g. `/photos/us-01.jpg`
-- `loveLetter` — your real letter. Use `{yourName}` anywhere you want SHASHANK
-  inserted, and blank lines for paragraph breaks.
-- `voiceMessage` — optional. Drop an audio file into `public/audio/` (e.g.
-  `public/audio/message.mp3`) and set this to `/audio/message.mp3`. Leave as
-  `null` to hide the player.
-- `closingMessage` — the final line shown after the ring reveal.
-
-## Run it locally
+## Run
 
 ```bash
 npm install
-npm run dev
+npm run dev            # http://localhost:5174/manoj/marriageinvitation
 ```
 
-Then open the printed `localhost` URL in your browser.
-
-## Share it with her
+## Production
 
 ```bash
 npm run build
+npm start              # serves invitation routes on http://localhost:3000 (PORT env var supported)
 ```
 
-This produces a `dist/` folder — deploy it to any static host (Vercel, Netlify,
-GitHub Pages, Cloudflare Pages) and send her the link. The password gate means
-the URL itself doesn't need to be kept secret, but keep it unlisted anyway.
+On Render, deploy this folder as its own Node web service. If the Git repository contains the contents of `invitation` at its root, leave Render's Root Directory blank. If `invitation` is a subfolder in the repository, set Root Directory to `invitation`. In either case use build command `npm ci && npm run build` and start command `npm start`. Render supplies the port, and this app serves `/manoj/marriageinvitation` itself.
 
-## What's inside
+## URLs
 
-- `PasswordGate.vue` — the entry gate
-- `HeroSection.vue` — the opening title
-- `StoryTimeline.vue` — your photo story, scroll-animated
-- `LoveLetter.vue` — a clickable sealed envelope that opens into your letter
-- `RingReveal.vue` — the 3D ring centerpiece (Three.js), rotates and reacts to
-  mouse movement, scales in dramatically on scroll
-- `ClosingSection.vue` — the final message
-# engagement
-# engagement
+`/<name>/<type>` or `/<type>`
+
+| type                 | events shown                         |
+| -------------------- | ------------------------------------ |
+| `invitation`         | all                                  |
+| `marriage`           | haldi, wedding, dinner               |
+| `marriageinvitation` | wedding, dinner                      |
+
+`<name>` is either partner's slug from config (`manoj` / `renuka`). It decides whose name is shown first.
+Edit `ROUTES` in `src/config.js` to add more.
+
+## Features
+
+- Ganesha invocation intro video (Telugu + English), with tap to skip and a text-only fallback
+- Temple-door gate with a monogram seal; the doors open with a petal burst, then a scroll cue
+- Animated falling petals (canvas)
+- Hero poster with the invitation text overlaid
+- Names, "When / Where" cards, a Google Maps directions link, and a couple hashtag
+- Festivities timeline that animates in on scroll
+- Event cards in a lightbox: intro video, then a reveal game
+  - Haldi: rub off the turmeric
+  - Mehndi: trace the henna heart
+  - Optional tap-the-dhol / ring-the-bell games with synthesised sounds (`mode: 'tap'` in `REVEALS`)
+- Live countdown to the muhurtham, in IST
+- Blessing footer, and a 404 page for wrong links
+- Respects `prefers-reduced-motion`
+
+## Media
+
+- Images: `src/assets/`. Replace a file, keeping its name.
+- Videos: `public/media/`. Paths are set in `src/config.js`.

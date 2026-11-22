@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/engagement/',
-  plugins: [vue()],
+  // This app is mounted at /manoj on its domain.
+  base: '/manoj/',
+  plugins: [react()],
+  server: { port: 5174, strictPort: true },
 })
